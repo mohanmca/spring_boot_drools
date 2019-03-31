@@ -1,0 +1,24 @@
+package rules
+
+import com.nikias.sb.model.Product
+
+rule "Offer for Diamond"
+	when
+		productObject: Product(type=="diamond")
+	then
+		productObject.setDiscount(15);
+	end
+
+rule "Offer for Gold"
+	when
+		productObject: Product(type=="gold")
+	then
+		productObject.setDiscount(25);
+	end
+
+rule "AllTrue"
+	when
+		eval(1==1)
+	then
+		System.out.println("\n\n\n****\n\n\n");
+	end
