@@ -1,6 +1,8 @@
 package com.nikias.sb.service;
 
 
+import com.nikias.sb.listener.DroolsAgendaEventListener;
+import com.nikias.sb.listener.RuleEventListener;
 import com.nikias.sb.model.Product;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
@@ -23,6 +25,8 @@ public class JewelleryShopService {
     public Product getProductDiscount(Product product) {
         //get the stateful session
         StatelessKieSession kieSession = kieContainer.newStatelessKieSession();
+        kieSession.addEventListener(new RuleEventListener());
+        kieSession.addEventListener(new DroolsAgendaEventListener());
         kieSession.execute(product);
         return product;
     }
